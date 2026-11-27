@@ -143,7 +143,7 @@ export const he: Dict = {
     title: "השירותים של האטלייה",
     more: "לפרטים",
     items: [
-      { id: "subscriptions", n: "I.", title: "מינויים", text: "Le Club Floral: זר חדש בבית בכל שבוע, בשלוש חבילות — מ־₪650 לחודש.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
+      { id: "subscriptions", n: "I.", title: "מינויים", text: "Lé Club Floral: זר חדש בבית בכל שבוע, בשלוש חבילות — מ־₪650 לחודש.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
       { id: "events", n: "II.", title: "אירועים וחתונות", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לאירוע או לחתונה." },
       { id: "corporate", n: "III.", title: "עסקים", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לעסק — סידורים קבועים ומתנות ללקוחות." },
       { id: "workshops", n: "IV.", title: "סדנאות", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר.", wa: "שלום NOÉM, אשמח לשמוע על הסדנאות באטלייה." },
@@ -159,7 +159,7 @@ export const he: Dict = {
     alt: "שני זרים עטופים בשקיות NOÉM עם כרטיס",
   },
   subscription: {
-    name: "Le Club Floral",
+    name: "Lé Club Floral",
     tagline: "קצת יוקרה, בכל שבוע.",
     perMonth: "לחודש",
     choose: "להצטרפות",
@@ -168,7 +168,7 @@ export const he: Dict = {
       { id: "signature", name: "Signature", price: "₪850" },
       { id: "jardin", name: "Le Jardin Privé", price: "₪1,500" },
     ],
-    waMessage: (tier, price) => `שלום NOÉM, אשמח להצטרף ל־Le Club Floral במינוי ${tier} (${price} לחודש).`,
+    waMessage: (tier, price) => `שלום NOÉM, אשמח להצטרף ל־Lé Club Floral במינוי ${tier} (${price} לחודש).`,
   },
   gallery: { title: "מהאטלייה" },
   footer: {
@@ -234,7 +234,7 @@ export const en: Dict = {
     title: "The atelier's services",
     more: "Discover",
     items: [
-      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Le Club Floral: a new bouquet at home every week, in three tiers — from ₪650 a month.", wa: "Hello NOÉM, I'd like to hear about a flower subscription." },
+      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Lé Club Floral: a new bouquet at home every week, in three tiers — from ₪650 a month.", wa: "Hello NOÉM, I'd like to hear about a flower subscription." },
       { id: "events", n: "II.", title: "Events & Weddings", text: "Bridal bouquets, tablescapes and installations, designed with you from the first sketch.", wa: "Hello NOÉM, I'd like to hear about flowers for an event or wedding." },
       { id: "corporate", n: "III.", title: "Corporate", text: "Weekly arrangements for lobbies, offices and boutiques, plus client gifting.", wa: "Hello NOÉM, I'd like to hear about flowers for my business — regular arrangements and client gifts." },
       { id: "workshops", n: "IV.", title: "Workshops", text: "Small-group evenings at the atelier: learn to compose and take your bouquet home.", wa: "Hello NOÉM, I'd like to hear about the atelier's workshops." },
@@ -250,7 +250,7 @@ export const en: Dict = {
     alt: "Two wrapped bouquets in NOÉM bags with cards",
   },
   subscription: {
-    name: "Le Club Floral",
+    name: "Lé Club Floral",
     tagline: "A little luxury, every week.",
     perMonth: "/ month",
     choose: "Join",
@@ -259,7 +259,7 @@ export const en: Dict = {
       { id: "signature", name: "Signature", price: "₪850" },
       { id: "jardin", name: "Le Jardin Privé", price: "₪1,500" },
     ],
-    waMessage: (tier, price) => `Hello NOÉM, I'd like to join Le Club Floral with the ${tier} subscription (${price} / month).`,
+    waMessage: (tier, price) => `Hello NOÉM, I'd like to join Lé Club Floral with the ${tier} subscription (${price} / month).`,
   },
   gallery: { title: "From the atelier" },
   footer: {

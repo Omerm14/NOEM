@@ -26,7 +26,7 @@ Hebrew is the primary language (RTL at `/`), English mirrors it at `/en/`.
 ## Placeholders still open (in [brackets] in content/site.ts)
 Founder name + bio + quote, atelier address, delivery area.
 Pricing: bouquets have NO fixed price — each is priced individually (handmade, depends on stock + budget; see
-`collection.handmade`). Subscriptions = "Le Club Floral", three tiers: L'Essentiel ₪650, Signature ₪850,
+`collection.handmade`). Subscriptions = "Lé Club Floral", three tiers: L'Essentiel ₪650, Signature ₪850,
 Le Jardin Privé ₪1,500 per month (weekly delivery). Hero video is a stand-in made from photos —
 replace `public/media/hero.mp4` (16:9) and `hero-vertical.mp4` (3:4) with real atelier footage.
 
