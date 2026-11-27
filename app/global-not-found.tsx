@@ -18,7 +18,7 @@ export default function GlobalNotFound() {
       <body className="nf-body">
         <main className="nf">
           <a href="/" className="nf__logo" aria-label="NOÉM">
-            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={500} height={256} />
+            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} />
           </a>
           <div className="nf__body">
             <p className="nf__code" aria-hidden="true">404</p>

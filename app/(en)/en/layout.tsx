@@ -4,7 +4,7 @@ import "@fontsource/heebo/200.css";
 import "@fontsource/heebo/300.css";
 import "@fontsource/heebo/400.css";
 import "../../globals.css";
-import { en, siteUrl } from "@/content/site";
+import { en, media, siteUrl } from "@/content/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.png", apple: "/apple-touch-icon.png" },
   description: en.meta.description,
   alternates: { languages: { he: "/" } },
-  openGraph: { title: en.meta.title, description: en.meta.description, images: ["/media/hero-poster.jpg"], locale: "en_US" },
+  openGraph: { title: en.meta.title, description: en.meta.description, images: [media.ogImage], locale: "en_US" },
 };
 
 export const viewport: Viewport = { themeColor: "#474d24" };

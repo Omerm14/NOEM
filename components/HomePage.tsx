@@ -30,10 +30,16 @@ export default function HomePage({ t }: { t: Dict }) {
       <Reveal />
       <main>
         <section className="hero" aria-label={t.hero.videoLabel}>
-          <video autoPlay muted loop playsInline preload="metadata" poster={media.heroPoster} aria-hidden="true">
-            <source src={media.heroVertical} type="video/mp4" media="(max-width: 700px)" />
-            <source src={media.hero} type="video/mp4" />
-          </video>
+          <picture className="hero__media" aria-hidden="true">
+            <source media="(max-width: 700px) and (orientation: portrait)" srcSet={`${media.heroImage}-portrait.webp`} />
+            <img
+              src={`${media.heroImage}-1600.webp`}
+              srcSet={`${media.heroImage}-1000.webp 1000w, ${media.heroImage}-1600.webp 1600w, ${media.heroImage}-2400.webp 2400w`}
+              sizes="100vw"
+              alt=""
+              fetchPriority="high"
+            />
+          </picture>
           <div className="hero__shade" aria-hidden="true" />
           <div className="hero__content hero-in">
             <h1 lang="en" dir="ltr">
@@ -57,10 +63,8 @@ export default function HomePage({ t }: { t: Dict }) {
         <section id="collection" className="wrap section section--collection">
           <div className="section-head" data-reveal>
             <div>
-              <p className="eyebrow">{t.collection.eyebrow}</p>
               <h2 className="serif">{t.collection.title}</h2>
             </div>
-            <p className="muted">{t.collection.intro}</p>
           </div>
           <div className="grid-3">
             {t.collection.bouquets.map((b) => (
@@ -68,7 +72,7 @@ export default function HomePage({ t }: { t: Dict }) {
                 <div className="card__img">
                   <Pic base={b.image} alt={b.alt} position={b.position} />
                 </div>
-                <h3 className="serif">{b.name}</h3>
+                <h3 className="serif card__name" lang="en" dir="ltr">{b.name}</h3>
                 <p className="muted">{b.note}</p>
                 <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">{t.collection.cta}</a>
               </article>
@@ -154,8 +158,8 @@ export default function HomePage({ t }: { t: Dict }) {
       <footer className="site-footer">
         <div className="cols">
           <div className="brand">
-            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={500} height={256} />
-            <p className="serif">{t.footer.tagline}</p>
+            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} />
+            <p className="serif footer-tagline" lang="en" dir="ltr">{t.footer.tagline}</p>
           </div>
           <div className="col">
             <p className="eyebrow" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
