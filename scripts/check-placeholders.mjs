@@ -14,7 +14,8 @@ const walk = (d) => {
 walk(root);
 
 // Visible text only: strip scripts except JSON-LD, then tags.
-const pattern = /\[[^\]\n]*[A-Za-z֐-׿][^\]\n]*\]/g;
+// A bracketed note that is not a Markdown link ("[name](url)" in llms.txt is fine).
+const pattern = /\[[^\]\n]*[A-Za-z֐-׿][^\]\n]*\](?!\()/g;
 const bad = [];
 for (const f of files) {
   let s = readFileSync(f, "utf8");

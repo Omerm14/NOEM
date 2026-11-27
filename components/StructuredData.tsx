@@ -1,5 +1,5 @@
 import type { Dict } from "@/content/site";
-import { areas, contact, contentUpdated, media, siteUrl } from "@/content/site";
+import { areas, contact, contentUpdated, large, media, siteUrl } from "@/content/site";
 import { abs, clean, pageUrl } from "@/lib/seo";
 
 // One JSON-LD graph per page, generated from the same copy the page shows (so it can never drift).
@@ -46,7 +46,7 @@ export default function StructuredData({ t }: { t: Dict }) {
       description: clean(t.collection.about),
       slogan: "Where flowers become art.",
       logo: { "@type": "ImageObject", url: abs(media.logoPng), width: 512, height: 512 },
-      image: [abs(media.ogImage), abs(`${media.dahlia}-1400.webp`), abs(`${media.bagYellow}-1400.webp`), abs(`${media.sunflower}-1400.webp`)],
+      image: [abs(media.ogImage), ...t.collection.bouquets.map((b) => abs(large(b.image)))],
       telephone: "+972-54-227-0540",
       priceRange: "₪₪₪",
       knowsLanguage: ["he", "en"],
@@ -74,7 +74,7 @@ export default function StructuredData({ t }: { t: Dict }) {
                 name: b.name,
                 serviceType: he ? "זר פרחים בעבודת יד" : "Hand-tied bouquet",
                 description: clean(b.note),
-                image: abs(`${b.image}-1400.webp`),
+                image: abs(large(b.image)),
                 provider: { "@id": id("atelier") },
               },
             })),
@@ -102,7 +102,7 @@ export default function StructuredData({ t }: { t: Dict }) {
     ...t.services.items.map((s) => ({
       "@type": "Service",
       "@id": id(`service-${s.id}`),
-      name: s.id === "subscriptions" ? `${s.title} — ${t.subscription.name}` : s.title,
+      name: s.id === "subscriptions" ? `${t.subscription.name} (${s.title})` : s.title,
       description: clean(s.text),
       provider: { "@id": id("atelier") },
       areaServed: serviceAreas,

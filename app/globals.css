@@ -772,3 +772,30 @@ html[dir="rtl"] .site-footer .col a.ltr { justify-content: flex-end; }
 .phone-inline { white-space: nowrap; display: inline-block; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 /* The statement dialog lives inside the tracked footer legal line — reset inherited tracking (judge 9) */
 .statement { letter-spacing: normal; text-transform: none; }
+
+/* =====================================================================
+   Speed pass — motion that never makes the visitor wait
+   ===================================================================== */
+/* Hero + header: shorter, no long delays */
+.hero-in h1 { animation: rise 0.8s var(--ease-soft) 0s both; }
+.hero-in .hero__ctas { animation: rise 0.8s var(--ease-soft) 0.12s both; }
+.site-header { animation: fade 0.5s ease 0s both; }
+@keyframes rise { from { opacity: 0.01; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+/* Scroll reveals: short travel, quick fade, tight stagger */
+.reveal { transform: translateY(12px); transition: opacity 0.55s ease, transform 0.65s var(--ease-soft); }
+.steps.reveal .step, .gallery.reveal img, .services .reveal .service {
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-soft);
+}
+.services .reveal.is-in .service { transition: opacity 0.5s ease, transform 0.6s var(--ease-soft), background-color 0.4s ease; }
+.grid-3 > .reveal:nth-child(2), .steps .step:nth-child(2), .gallery img:nth-child(2), .services .service:nth-child(2) { transition-delay: 0.06s; }
+.grid-3 > .reveal:nth-child(3), .steps .step:nth-child(3), .gallery img:nth-child(3), .services .service:nth-child(3) { transition-delay: 0.12s; }
+.gallery img:nth-child(4), .services .service:nth-child(4) { transition-delay: 0.18s; }
+/* Mobile menu: opens immediately */
+@media (max-width: 1240px) {
+  .mobile-nav { transition: opacity 0.25s ease, visibility 0s linear 0.25s; }
+  .mobile-nav.is-open { transition: opacity 0.25s ease, visibility 0s; }
+  .mobile-nav__links a, .mobile-nav__foot { transition: opacity 0.35s ease, transform 0.4s var(--ease-soft); transition-delay: calc(var(--i, 0) * 0.03s); }
+}
+/* Hero still settles faster */
+.hero__media img { animation-duration: 5s; }

@@ -1,5 +1,5 @@
 import type { Dict } from "@/content/site";
-import { contact, media, shown, waLink } from "@/content/site";
+import { bigWidth, contact, media, shown, waLink } from "@/content/site";
 import A11yStatement from "./A11yStatement";
 import Header from "./Header";
 import Reveal from "./Reveal";
@@ -14,7 +14,7 @@ const WhatsAppIcon = () => (
 );
 
 function Pic({ base, alt, position, sizes = "(max-width: 900px) 100vw, 33vw" }: { base: string; alt: string; position?: string; sizes?: string }) {
-  const big = 1400;
+  const big = bigWidth(base);
   return (
     <img
       src={`${base}-800.webp`}
@@ -140,7 +140,7 @@ export default function HomePage({ t }: { t: Dict }) {
 
         <section className="wrap section">
           <div className="split" data-reveal>
-            <Pic base={media.bagsPair} alt={t.atelier.alt} position="center 60%" sizes="(max-width: 900px) 100vw, 50vw" />
+            <Pic base={media.bagYellow} alt={t.atelier.alt} position="center 45%" sizes="(max-width: 900px) 100vw, 50vw" />
             <div>
               <p className="eyebrow caps" lang="en" dir="ltr">{t.atelier.eyebrow}</p>
               <h2 className="serif caps" lang="en" dir="ltr">
@@ -179,10 +179,10 @@ export default function HomePage({ t }: { t: Dict }) {
             </a>
           </div>
           <div className="gallery" data-reveal>
-            <Pic base={media.vaseBlush} alt={t.gallery.alts[0]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.bridalRoses} alt={t.gallery.alts[1]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.anthuriumBridal} alt={t.gallery.alts[2]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.vaseKitchen} alt={t.gallery.alts[3]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.yellowWrapped} alt={t.gallery.alts[0]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.boxPastel} alt={t.gallery.alts[1]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.vaseKitchen} alt={t.gallery.alts[2]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.bagsPair} alt={t.gallery.alts[3]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
           </div>
         </section>
 
