@@ -52,7 +52,7 @@ export default function Header({ t }: { t: HeaderCopy }) {
 
   return (
     <header ref={ref} className={cls}>
-      <div className="announce">{t.announcement}</div>
+      <div className="announce" lang="fr" dir="ltr">{t.announcement}</div>
       <div className="wrap header-row">
         <nav aria-label={t.locale === "he" ? "ראשי" : "Main"} className="main-nav">
           {t.nav.map((n) => (

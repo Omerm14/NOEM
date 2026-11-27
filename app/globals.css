@@ -653,3 +653,6 @@ html[dir="rtl"] .band__name.caps, html[dir="rtl"] .tier__name.caps, html[dir="rt
 /* Same English heading in both languages: beat the language-specific label/step sizes */
 html[lang] .eyebrow.caps { font-size: 12px; font-weight: 400; letter-spacing: 0.24em; line-height: normal; }
 html[lang] .step h3.caps { font-size: 14px; font-weight: 400; letter-spacing: 0.18em; }
+
+/* Top strip: "L’art de la fleur" — the same capitals and tracking on both languages */
+html[lang] .announce { font-size: 12px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; }
