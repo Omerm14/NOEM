@@ -27,4 +27,4 @@ Prices, founder name + bio + quote, atelier address, delivery area. Hero video i
 replace `public/media/hero.mp4` (16:9) and `hero-vertical.mp4` (3:4) with real atelier footage.
 
 ## Commands
-`npm run dev` · `npm run build` (static export to `out/`, deployable to Vercel or any static host).
+`npm run dev` · `npm run build` (static export to `out/`). Vercel-ready via `vercel.json` (see README) — not deployed yet.

@@ -35,7 +35,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <source src={media.hero} type="video/mp4" />
           </video>
           <div className="hero__shade" aria-hidden="true" />
-          <div className="hero__content">
+          <div className="hero__content hero-in">
             <h1>
               {t.hero.line1} <em>{t.hero.line2}</em>
             </h1>
@@ -54,7 +54,7 @@ export default function HomePage({ t }: { t: Dict }) {
           <p className="eyebrow">{t.quote.by}</p>
         </section>
 
-        <section id="collection" className="wrap section" style={{ paddingBottom: 40, scrollMarginTop: 90 }}>
+        <section id="collection" className="wrap section section--collection">
           <div className="section-head" data-reveal>
             <div>
               <p className="eyebrow">{t.collection.eyebrow}</p>
@@ -79,7 +79,7 @@ export default function HomePage({ t }: { t: Dict }) {
           </div>
         </section>
 
-        <div className="wrap" style={{ paddingTop: 80 }}>
+        <div className="wrap steps-wrap">
           <div className="steps" data-reveal>
             {t.steps.map((s) => (
               <div key={s.n} className="step">
