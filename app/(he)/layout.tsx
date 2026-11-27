@@ -5,6 +5,7 @@ import "@fontsource/heebo/300.css";
 import "@fontsource/heebo/400.css";
 import "../globals.css";
 import { he, media, siteUrl } from "@/content/site";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -20,7 +21,10 @@ export const viewport: Viewport = { themeColor: "#474d24" };
 export default function HebrewLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="he" dir="rtl">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
