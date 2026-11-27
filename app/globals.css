@@ -544,3 +544,14 @@ html[lang="en"] .main-nav a { font-size: 12px; letter-spacing: 0.14em; }
 @media (prefers-reduced-motion: reduce) { .nf__body { animation: none; } }
 .nf__en a { white-space: nowrap; }
 @media (max-width: 700px) { .nf__en a { display: inline-block; margin: 10px 0 0; } .nf__en { line-height: 1.8; } }
+
+/* Hero signature: English, capitals, both languages */
+.hero h1 {
+  text-transform: uppercase;
+  font-size: clamp(30px, 4.6vw, 66px);
+  letter-spacing: 0.12em;
+  line-height: 1.18;
+  margin-inline-end: -0.12em; /* trailing tracking would push the line off-centre */
+}
+.hero h1 span, .hero h1 em { display: inline-block; }
+@media (max-width: 700px) { .hero h1 { letter-spacing: 0.1em; font-size: clamp(28px, 8.4vw, 40px); } .hero h1 span, .hero h1 em { display: block; } }

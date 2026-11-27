@@ -84,8 +84,9 @@ export const he: Dict = {
   menu: "תפריט",
   close: "סגירה",
   hero: {
-    line1: "שם פרחים",
-    line2: "הופכים לאמנות.",
+    // The hero line is the brand signature: English, in capitals, on both languages.
+    line1: "Where flowers",
+    line2: "become art.",
     explore: "לקולקציה",
     whatsapp: "הזמנה בוואטסאפ",
     videoLabel: "זרים של NOÉM באטלייה",

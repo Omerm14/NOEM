@@ -36,8 +36,8 @@ export default function HomePage({ t }: { t: Dict }) {
           </video>
           <div className="hero__shade" aria-hidden="true" />
           <div className="hero__content hero-in">
-            <h1>
-              {t.hero.line1} <em>{t.hero.line2}</em>
+            <h1 lang="en" dir="ltr">
+              <span>{t.hero.line1}</span> <em>{t.hero.line2}</em>
             </h1>
             <div className="hero__ctas">
               <a href="#collection" className="btn btn--cream">{t.hero.explore}</a>
