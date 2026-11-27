@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { contentUpdated, media } from "@/content/site";
+import { contentUpdated, large, media } from "@/content/site";
 import { abs, hreflang, pageUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -8,14 +8,7 @@ export const dynamic = "force-static";
 const images = [
   `${media.heroImage}-1600.webp`,
   media.ogImage,
-  `${media.dahlia}-1400.webp`,
-  `${media.bagYellow}-1400.webp`,
-  `${media.sunflower}-1400.webp`,
-  `${media.bagsPair}-1400.webp`,
-  `${media.vaseBlush}-1400.webp`,
-  `${media.bridalRoses}-1400.webp`,
-  `${media.anthuriumBridal}-1400.webp`,
-  `${media.vaseKitchen}-1400.webp`,
+  ...[media.pastelWrapped, media.anthuriumWrapped, media.vaseSunflower, media.bagsPair, media.yellowWrapped, media.boxPastel, media.vaseKitchen, media.bagYellow].map(large),
 ].map(abs);
 
 export default function sitemap(): MetadataRoute.Sitemap {

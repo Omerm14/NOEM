@@ -2,35 +2,39 @@ import { areas, contact, en, he, siteUrl } from "@/content/site";
 import type { Dict } from "@/content/site";
 import { clean } from "@/lib/seo";
 
-// /llms.txt — a plain summary for AI assistants, generated from the same copy as the page.
-// (No major engine has confirmed using llms.txt; it is cheap, accurate and harmless.)
+// /llms.txt in the llmstxt.org format: H1, a summary quote, then link lists (- [name](url): notes).
+// Generated from the same copy as the page, so it can never drift.
 export const dynamic = "force-static";
 
-const section = (t: Dict, url: string) => {
+const phone = contact.phones[0];
+
+const section = (t: Dict) => {
   const isHe = t.locale === "he";
-  const list = (xs: string[]) => xs.map((x) => `- ${clean(x)}`).join("\n");
+  const base = isHe ? `${siteUrl}/` : `${siteUrl}/en/`;
+  const link = (name: string, anchor: string, note: string) => `- [${clean(name)}](${base}${anchor}): ${clean(note)}`;
   const ono = areas.filter((a) => a.ono).map((a) => (isHe ? a.he : a.en)).join(", ");
   const other = areas.filter((a) => !a.ono).map((a) => (isHe ? a.he : a.en)).join(", ");
   return [
-    `## ${isHe ? "עברית" : "English"} — ${url}`,
+    `## ${isHe ? "עברית" : "English"}`,
     "",
     clean(t.collection.about),
     "",
-    `### ${isHe ? "אזור משלוחים" : "Delivery area"}`,
-    `${isHe ? "בקעת אונו" : "Ono Valley"}: ${ono}. ${isHe ? "וגם" : "Also"}: ${other}.`,
+    `### ${isHe ? "הקולקציה" : "Collection"}`,
+    ...t.collection.bouquets.map((b) => link(b.name, "#collection", b.note)),
     "",
-    `### ${isHe ? "זרים" : "Bouquets"}`,
-    list(t.collection.bouquets.map((b) => `${b.name}: ${b.note}`)),
     clean(t.collection.handmade),
     "",
     `### ${t.subscription.name}`,
-    list(t.subscription.tiers.map((x) => `${x.name.replace("’", "'")}: ${x.price} ${t.subscription.perMonth}`)),
+    ...t.subscription.tiers.map((x) => link(x.name.replace("’", "'"), "#club", `${x.price} ${t.subscription.perMonth}`)),
     "",
     `### ${isHe ? "שירותים" : "Services"}`,
-    list(t.services.items.map((s) => `${s.title}: ${s.text}`)),
+    ...t.services.items.map((s) => link(s.title, `#${s.id}`, s.text)),
+    "",
+    `### ${isHe ? "אזור משלוחים" : "Delivery area"}`,
+    `${isHe ? "בקעת אונו" : "Ono Valley"}: ${ono}. ${isHe ? "וגם" : "Also"} ${other}.`,
     "",
     `### ${isHe ? "שאלות נפוצות" : "FAQ"}`,
-    t.faq.items.map((f) => `**${clean(f.q)}**\n${clean(f.a)}`).join("\n\n"),
+    ...t.faq.items.map((f) => link(f.q, `#faq-${f.id}`, f.a)),
   ].join("\n");
 };
 
@@ -38,14 +42,23 @@ export function GET() {
   const body = [
     "# NOÉM Flower Atelier",
     "",
-    `> Luxury hand-tied bouquets, a weekly flower subscription (Lé Club Floral) and flowers for weddings, events and businesses — Ono Valley and Hod HaSharon, Israel. Orders by WhatsApp (https://wa.me/${contact.whatsapp}) or phone +972-54-227-0540. Instagram: https://www.instagram.com/${contact.instagram}/`,
+    `> ${clean(en.collection.about)}`,
     "",
-    "- Hebrew site: " + `${siteUrl}/`,
-    "- English site: " + `${siteUrl}/en/`,
+    "Hand-tied luxury bouquets with no fixed price (each is priced to the customer's budget), the Lé Club Floral weekly subscription in three tiers, and flowers for weddings, events and businesses. There is no shop. Orders are delivered to the door, and workshops are held at a venue arranged in advance.",
     "",
-    section(he, `${siteUrl}/`),
+    "## Site",
+    `- [NOÉM in Hebrew](${siteUrl}/): the main site`,
+    `- [NOÉM in English](${siteUrl}/en/): the same content in English`,
+    `- [Accessibility statement](${siteUrl}/en/#accessibility): IS 5568 / WCAG 2.1 AA, adjustments and contact`,
     "",
-    section(en, `${siteUrl}/en/`),
+    "## Order and contact",
+    `- [WhatsApp](https://wa.me/${contact.whatsapp}): orders and questions, in Hebrew or English`,
+    `- [Phone ${phone.intl}](${phone.href}): calls and WhatsApp`,
+    `- [Instagram @${contact.instagram}](https://www.instagram.com/${contact.instagram}/): recent work from the atelier`,
+    "",
+    section(en),
+    "",
+    section(he),
     "",
   ].join("\n");
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });

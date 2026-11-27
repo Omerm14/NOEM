@@ -87,7 +87,7 @@ export default function Header({ t }: { t: HeaderCopy }) {
         <div className="header-tools">
           <a href={t.switchHref} className="lang-switch" lang={t.locale === "he" ? "en" : "he"}>
             {t.switchLabel}
-            <span className="sr-only"> — {t.switchAria}</span>
+            <span className="sr-only">, {t.switchAria}</span>
           </a>
           <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener" data-loc="header" data-item="general">
             {t.order}<span className="sr-only"> {t.newTab}</span>
