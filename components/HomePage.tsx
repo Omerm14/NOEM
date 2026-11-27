@@ -68,15 +68,13 @@ export default function HomePage({ t }: { t: Dict }) {
                 <div className="card__img">
                   <Pic base={b.image} alt={b.alt} position={b.position} />
                 </div>
-                <div className="card__row">
-                  <h3 className="serif">{b.name}</h3>
-                  <span>{b.price}</span>
-                </div>
+                <h3 className="serif">{b.name}</h3>
                 <p className="muted">{b.note}</p>
                 <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">{t.collection.cta}</a>
               </article>
             ))}
           </div>
+          <p className="handmade" data-reveal>{t.collection.handmade}</p>
         </section>
 
         <div className="wrap steps-wrap">
@@ -112,7 +110,7 @@ export default function HomePage({ t }: { t: Dict }) {
 
         <section className="wrap section">
           <div className="split" data-reveal>
-            <Pic base={media.dahlia} alt={t.atelier.alt} sizes="(max-width: 900px) 100vw, 50vw" />
+            <Pic base={media.bagsPair} alt={t.atelier.alt} position="center 60%" sizes="(max-width: 900px) 100vw, 50vw" />
             <div>
               <p className="eyebrow">{t.atelier.eyebrow}</p>
               <h2 className="serif">
@@ -125,10 +123,18 @@ export default function HomePage({ t }: { t: Dict }) {
           </div>
         </section>
 
-        <section className="band" data-reveal>
-          <p className="eyebrow">{t.subscription.eyebrow}</p>
-          <h2 className="serif">{t.subscription.title}</h2>
-          <a className="btn btn--outline-cream" href={waLink(t.subscription.waMessage)} target="_blank" rel="noopener">{t.subscription.cta}</a>
+        <section className="band" id="club" data-reveal>
+          <h2 className="serif band__name" lang="fr" dir="ltr">{t.subscription.name}</h2>
+          <p className="band__tagline">{t.subscription.tagline}</p>
+          <div className="tiers">
+            {t.subscription.tiers.map((tier) => (
+              <a key={tier.id} className="tier" href={waLink(t.subscription.waMessage(tier.name, tier.price))} target="_blank" rel="noopener">
+                <span className="tier__name" lang="fr" dir="ltr">{tier.name}</span>
+                <span className="tier__price"><bdi>{tier.price}</bdi> {t.subscription.perMonth}</span>
+                <span className="tier__cta">{t.subscription.choose}</span>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section className="wrap section">
@@ -137,10 +143,10 @@ export default function HomePage({ t }: { t: Dict }) {
             <a href={`https://instagram.com/${contact.instagram}`}>@{contact.instagram}</a>
           </div>
           <div className="gallery" data-reveal>
-            <Pic base={media.anthurium} alt="" sizes="25vw" />
-            <Pic base={media.dahlia} alt="" position="right bottom" sizes="25vw" />
-            <Pic base={media.window} alt="" position="center 30%" sizes="25vw" />
-            <Pic base={media.bag} alt="" position="center 80%" sizes="25vw" />
+            <Pic base={media.vaseBlush} alt="" position="center 55%" sizes="25vw" />
+            <Pic base={media.bridalRoses} alt="" position="center 55%" sizes="25vw" />
+            <Pic base={media.anthuriumBridal} alt="" position="center 60%" sizes="25vw" />
+            <Pic base={media.vaseKitchen} alt="" position="center 60%" sizes="25vw" />
           </div>
         </section>
       </main>

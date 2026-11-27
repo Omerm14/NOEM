@@ -25,6 +25,13 @@ export const media = {
   bag: "/media/bouquet-bag",
   window: "/media/bouquet-window",
   anthurium: "/media/anthurium",
+  bagYellow: "/media/bag-yellow",
+  sunflower: "/media/sunflower-wild",
+  bagsPair: "/media/bags-pair",
+  vaseBlush: "/media/vase-blush",
+  bridalRoses: "/media/bridal-roses",
+  anthuriumBridal: "/media/anthurium-bridal",
+  vaseKitchen: "/media/vase-kitchen",
 };
 
 export type Locale = "he" | "en";
@@ -33,7 +40,6 @@ export type Bouquet = {
   id: string;
   name: string;
   note: string;
-  price: string;
   image: string;
   position?: string;
   alt: string;
@@ -54,11 +60,11 @@ export type Dict = {
   close: string;
   hero: { line1: string; line2: string; explore: string; whatsapp: string; videoLabel: string };
   quote: { text: string; by: string };
-  collection: { eyebrow: string; title: string; intro: string; cta: string; waMessage: (name: string) => string; bouquets: Bouquet[] };
+  collection: { eyebrow: string; title: string; intro: string; handmade: string; cta: string; waMessage: (name: string) => string; bouquets: Bouquet[] };
   steps: { n: string; title: string; text: string }[];
   services: { eyebrow: string; title: string; more: string; items: { n: string; title: string; text: string; id: string; wa: string }[] };
   atelier: { eyebrow: string; title1: string; title2: string; p1: string; p2: string; cta: string; alt: string };
-  subscription: { eyebrow: string; title: string; cta: string; waMessage: string };
+  subscription: { name: string; tagline: string; perMonth: string; choose: string; tiers: { id: string; name: string; price: string }[]; waMessage: (tier: string, price: string) => string };
   gallery: { title: string };
   footer: { tagline: string; visit: string; address: string; atelierCol: string; rights: string };
 };
@@ -101,14 +107,14 @@ export const he: Dict = {
     eyebrow: "הקולקציה",
     title: "זרי העונה",
     intro: "בוחרים זר, שולחים לנו הודעה, ואנחנו מאשרים את פרחי היום, את הכרטיס ואת חלון המשלוח.",
+    handmade: "כל זר נקשר ביד באטלייה, ואין שני זרים זהים: הוא נבנה מהפרחים שיש לנו באותו יום ולפי התקציב שלכם, ולכן כל זר מתומחר בנפרד.",
     cta: "להזמנה בוואטסאפ",
-    waMessage: (name) => `שלום NOÉM, אשמח להזמין את הזר „${name}״.`,
+    waMessage: (name) => `שלום NOÉM, אשמח להזמין את הזר „${name}״. התקציב שלי: `,
     bouquets: [
       {
         id: "atelier",
         name: "האטלייה",
         note: "הזר החתום שלנו: דליות, מנתור וטוודיה בשמנת, ורוד עדין ותכלת.",
-        price: "₪ [מחיר]",
         image: media.dahlia,
         alt: "דליות לבנות וורודות עם טוודיה תכולה",
       },
@@ -116,19 +122,17 @@ export const he: Dict = {
         id: "grand",
         name: "מחווה גדולה",
         note: "קומפוזיציה נדיבה ואוורירית, בשקית החתומה של האטלייה.",
-        price: "₪ [מחיר]",
-        image: media.bag,
-        position: "center 30%",
-        alt: "זר פסטל גדול בשקית NOÉM",
+        image: media.bagYellow,
+        position: "center 40%",
+        alt: "זר גרברות וחרציות בגווני צהוב בשקית NOÉM",
       },
       {
         id: "florist",
         name: "בחירת הפלוריסטית",
         note: "ספרו לנו מה האירוע ומה האווירה — נרכיב מהגבעולים הטובים של היום.",
-        price: "החל מ־₪ [מחיר]",
-        image: media.window,
-        position: "center 35%",
-        alt: "זר עם מנתור אפרסקי ועשבים ירוקים ליד חלון",
+        image: media.sunflower,
+        position: "center 30%",
+        alt: "זר חמניות, הורטנזיה וורדים אפרסקיים מוחזק ביד ליד וילון",
       },
     ],
   },
@@ -142,7 +146,7 @@ export const he: Dict = {
     title: "השירותים של האטלייה",
     more: "לפרטים",
     items: [
-      { id: "subscriptions", n: "I.", title: "מינויים", text: "פרחים טריים בבית בכל שבוע או בכל חודש, בהתאם לעונה.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
+      { id: "subscriptions", n: "I.", title: "מינויים", text: "Le Club Floral: זר חדש בבית בכל שבוע, בשלוש חבילות — מ־₪650 לחודש.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
       { id: "events", n: "II.", title: "אירועים וחתונות", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לאירוע או לחתונה." },
       { id: "corporate", n: "III.", title: "עסקים", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לעסק — סידורים קבועים ומתנות ללקוחות." },
       { id: "workshops", n: "IV.", title: "סדנאות", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר.", wa: "שלום NOÉM, אשמח לשמוע על הסדנאות באטלייה." },
@@ -155,13 +159,19 @@ export const he: Dict = {
     p1: "[פסקה קצרה על המייסדת: איפה למדה, למה פתחה את NOÉM, ומה מייחד את דרך העבודה באטלייה.]",
     p2: "מהכרטיס בכתב יד ועד הסרט על השקית — שום דבר לא יוצא מהאטלייה במקרה.",
     cta: "הסיפור שלנו",
-    alt: "כרטיס NOÉM מונח על זר דליות",
+    alt: "שני זרים עטופים בשקיות NOÉM עם כרטיס",
   },
   subscription: {
-    eyebrow: "מינוי פרחים",
-    title: "קומפוזיציה חדשה על השולחן, בכל שבוע.",
-    cta: "להתחיל מינוי",
-    waMessage: "שלום NOÉM, אשמח לשמוע על מינוי פרחים.",
+    name: "Le Club Floral",
+    tagline: "קצת יוקרה, בכל שבוע.",
+    perMonth: "לחודש",
+    choose: "להצטרפות",
+    tiers: [
+      { id: "essentiel", name: "L’Essentiel", price: "₪650" },
+      { id: "signature", name: "Signature", price: "₪850" },
+      { id: "jardin", name: "Le Jardin Privé", price: "₪1,500" },
+    ],
+    waMessage: (tier, price) => `שלום NOÉM, אשמח להצטרף ל־Le Club Floral במינוי ${tier} (${price} לחודש).`,
   },
   gallery: { title: "מהאטלייה" },
   footer: {
@@ -210,12 +220,13 @@ export const en: Dict = {
     eyebrow: "The Collection",
     title: "Bouquets of the season",
     intro: "Choose a bouquet, send us a message, and we will confirm the flowers of the day, the card and the delivery window.",
+    handmade: "Every bouquet is tied by hand at the atelier and no two are alike: we compose it from the flowers we have that day and to your budget, so each one is priced individually.",
     cta: "Order on WhatsApp",
-    waMessage: (name) => `Hello NOÉM, I'd like to order the “${name}” bouquet.`,
+    waMessage: (name) => `Hello NOÉM, I'd like to order the “${name}” bouquet. My budget: `,
     bouquets: [
-      { id: "atelier", name: "The Atelier", note: "Our signature: dahlias, stock and tweedia in cream, blush and powder blue.", price: "₪ [PRICE]", image: media.dahlia, alt: "White and blush dahlias with blue tweedia" },
-      { id: "grand", name: "Grand Gesture", note: "A generous, airy composition, presented in the atelier's signature bag.", price: "₪ [PRICE]", image: media.bag, position: "center 30%", alt: "A large pastel bouquet in a NOÉM gift bag" },
-      { id: "florist", name: "Florist's Choice", note: "Tell us the occasion and the mood. We compose from the best stems of the day.", price: "from ₪ [PRICE]", image: media.window, position: "center 35%", alt: "Bouquet with peach stock and pale green grasses by a window" },
+      { id: "atelier", name: "The Atelier", note: "Our signature: dahlias, stock and tweedia in cream, blush and powder blue.", image: media.dahlia, alt: "White and blush dahlias with blue tweedia" },
+      { id: "grand", name: "Grand Gesture", note: "A generous, airy composition, presented in the atelier's signature bag.", image: media.bagYellow, position: "center 40%", alt: "Yellow gerbera and chrysanthemum bouquet in a NOÉM gift bag" },
+      { id: "florist", name: "Florist's Choice", note: "Tell us the occasion and the mood. We compose from the best stems of the day.", image: media.sunflower, position: "center 30%", alt: "Hand-held bouquet of sunflowers, hydrangea and peach roses by a curtain" },
     ],
   },
   steps: [
@@ -228,7 +239,7 @@ export const en: Dict = {
     title: "The atelier's services",
     more: "Discover",
     items: [
-      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Fresh flowers at home every week or every month, composed to the season.", wa: "Hello NOÉM, I'd like to hear about a flower subscription." },
+      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Le Club Floral: a new bouquet at home every week, in three tiers — from ₪650 a month.", wa: "Hello NOÉM, I'd like to hear about a flower subscription." },
       { id: "events", n: "II.", title: "Events & Weddings", text: "Bridal bouquets, tablescapes and installations, designed with you from the first sketch.", wa: "Hello NOÉM, I'd like to hear about flowers for an event or wedding." },
       { id: "corporate", n: "III.", title: "Corporate", text: "Weekly arrangements for lobbies, offices and boutiques, plus client gifting.", wa: "Hello NOÉM, I'd like to hear about flowers for my business — regular arrangements and client gifts." },
       { id: "workshops", n: "IV.", title: "Workshops", text: "Small-group evenings at the atelier: learn to compose and take your bouquet home.", wa: "Hello NOÉM, I'd like to hear about the atelier's workshops." },
@@ -241,13 +252,19 @@ export const en: Dict = {
     p1: "[A short paragraph about the founder: where she trained, why she opened NOÉM, and what makes the atelier's way of working different.]",
     p2: "From the hand-written card to the ribbon on the bag, nothing leaves the atelier by accident.",
     cta: "Our story",
-    alt: "NOÉM card resting on a bouquet of dahlias",
+    alt: "Two wrapped bouquets in NOÉM bags with cards",
   },
   subscription: {
-    eyebrow: "Flower subscription",
-    title: "A new composition on your table, every week.",
-    cta: "Start a subscription",
-    waMessage: "Hello NOÉM, I'd like to hear about a flower subscription.",
+    name: "Le Club Floral",
+    tagline: "A little luxury, every week.",
+    perMonth: "/ month",
+    choose: "Join",
+    tiers: [
+      { id: "essentiel", name: "L’Essentiel", price: "₪650" },
+      { id: "signature", name: "Signature", price: "₪850" },
+      { id: "jardin", name: "Le Jardin Privé", price: "₪1,500" },
+    ],
+    waMessage: (tier, price) => `Hello NOÉM, I'd like to join Le Club Floral with the ${tier} subscription (${price} / month).`,
   },
   gallery: { title: "From the atelier" },
   footer: {
