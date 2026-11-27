@@ -72,8 +72,8 @@ export const he: Dict = {
   locale: "he",
   dir: "rtl",
   meta: {
-    title: "NOÉM — אטלייה פרחים",
-    description: "זרי פרחים יוקרתיים בעבודת יד, מינויים, אירועים וחתונות. WHERE FLOWERS BECOME ART.",
+    title: "NOÉM — FLOWER ATELIER",
+    description: "זרי פרחים יוקרתיים בעבודת יד, מינויים, אירועים וחתונות. WHERE FLOWERS BECOME ART.\u200E",
   },
   announcement: "כל זר נקשר ביד באטלייה · משלוחים ב[אזור משלוח]",
   nav: [
@@ -184,7 +184,7 @@ export const en: Dict = {
   locale: "en",
   dir: "ltr",
   meta: {
-    title: "NOÉM — Flower Atelier",
+    title: "NOÉM — FLOWER ATELIER",
     description: "High-end bouquets composed by hand, subscriptions, events and weddings. WHERE FLOWERS BECOME ART.",
   },
   announcement: "Hand-tied daily at the atelier · Delivery across [DELIVERY AREA]",
