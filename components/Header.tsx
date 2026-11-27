@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import type { Dict } from "@/content/site";
 import { contact, media, waLink } from "@/content/site";
 
-export type HeaderCopy = Pick<Dict, "locale" | "orderMessage" | "announcement" | "nav" | "switchLabel" | "switchHref" | "switchAria" | "order" | "menu" | "close"> & { whatsapp: string };
+export type HeaderCopy = Pick<Dict, "locale" | "orderMessage" | "newTab" | "homeLabel" | "announcement" | "nav" | "switchLabel" | "switchHref" | "switchAria" | "order" | "menu" | "close"> & { whatsapp: string };
 
 export default function Header({ t }: { t: HeaderCopy }) {
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
+  const menuBtn = useRef<HTMLButtonElement>(null);
+  const firstLink = useRef<HTMLAnchorElement>(null);
 
   // Expose the header's live height so the mobile menu sheet starts right beneath it.
   useEffect(() => {
@@ -34,13 +36,22 @@ export default function Header({ t }: { t: HeaderCopy }) {
     if (!open) return;
     const root = document.documentElement;
     root.classList.add("menu-lock");
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    // The sheet covers the page: keep keyboard and screen-reader focus inside it.
+    const behind = Array.from(document.querySelectorAll<HTMLElement>("main, footer, .skip-link"));
+    behind.forEach((el) => el.setAttribute("inert", ""));
+    firstLink.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      menuBtn.current?.focus();
+    };
     const mq = window.matchMedia("(min-width: 1241px)");
     const onMq = () => mq.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     mq.addEventListener("change", onMq);
     return () => {
       root.classList.remove("menu-lock");
+      behind.forEach((el) => el.removeAttribute("inert"));
       window.removeEventListener("keydown", onKey);
       mq.removeEventListener("change", onMq);
     };
@@ -60,6 +71,7 @@ export default function Header({ t }: { t: HeaderCopy }) {
           ))}
         </nav>
         <button
+          ref={menuBtn}
           type="button"
           className="menu-btn"
           aria-expanded={open}
@@ -69,27 +81,34 @@ export default function Header({ t }: { t: HeaderCopy }) {
           <span className="menu-icon" aria-hidden="true"><span /><span /></span>
           {open ? t.close : t.menu}
         </button>
-        <a href={t.locale === "he" ? "/" : "/en/"} className="logo" aria-label="NOÉM">
-          <img src={dark ? media.logoOlive : media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} />
+        <a href={t.locale === "he" ? "/" : "/en/"} className="logo">
+          <img src={dark ? media.logoOlive : media.logoCream} alt={t.homeLabel} width={1164} height={590} />
         </a>
         <div className="header-tools">
-          <a href={t.switchHref} className="lang-switch" aria-label={t.switchAria} lang={t.locale === "he" ? "en" : "he"}>
+          <a href={t.switchHref} className="lang-switch" lang={t.locale === "he" ? "en" : "he"}>
             {t.switchLabel}
+            <span className="sr-only"> — {t.switchAria}</span>
           </a>
-          <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener">{t.order}</a>
+          <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener" data-loc="header" data-item="general">
+            {t.order}<span className="sr-only"> {t.newTab}</span>
+          </a>
         </div>
       </div>
-      <nav id="mobile-nav" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label={t.menu} aria-hidden={!open} inert={!open}>
+      <nav id="mobile-nav" data-loc="mobile_nav" data-item="general" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label={t.menu} aria-hidden={!open} inert={!open}>
         <div className="mobile-nav__links">
           {t.nav.map((n, i) => (
-            <a key={n.href} href={n.href} onClick={close} style={{ "--i": i } as React.CSSProperties}>{n.label}</a>
+            <a key={n.href} ref={i === 0 ? firstLink : undefined} href={n.href} onClick={close} style={{ "--i": i } as React.CSSProperties}>{n.label}</a>
           ))}
         </div>
         <div className="mobile-nav__foot" style={{ "--i": t.nav.length } as React.CSSProperties}>
-          <a href={waLink(t.orderMessage)} onClick={close} className="btn btn--solid" target="_blank" rel="noopener">{t.whatsapp}</a>
+          <a href={waLink(t.orderMessage)} onClick={close} className="btn btn--solid" target="_blank" rel="noopener">
+            {t.whatsapp}<span className="sr-only"> {t.newTab}</span>
+          </a>
           <div className="mobile-nav__contact">
             <a href={contact.phones[0].href} className="ltr">{t.locale === "en" ? contact.phones[0].intl : contact.phones[0].label}</a>
-            <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
+            <a href={`https://www.instagram.com/${contact.instagram}/`} className="ltr" target="_blank" rel="noopener">
+              @{contact.instagram}<span className="sr-only"> {t.newTab}</span>
+            </a>
           </div>
         </div>
       </nav>

@@ -6,15 +6,7 @@ import { useEffect } from "react";
 // because the .reveal class is only added by this script.
 export default function Reveal() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Respect the OS setting for the hero film too: stop it on its first frame.
-      document.querySelectorAll<HTMLVideoElement>("video[autoplay]").forEach((v) => {
-        v.removeAttribute("autoplay");
-        v.pause();
-        v.currentTime = 0;
-      });
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     els.forEach((el) => {
       const r = el.getBoundingClientRect();
