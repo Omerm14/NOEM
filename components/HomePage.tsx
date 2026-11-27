@@ -63,7 +63,7 @@ export default function HomePage({ t }: { t: Dict }) {
         <section id="collection" className="wrap section section--collection">
           <div className="section-head" data-reveal>
             <div>
-              <h2 className="serif">{t.collection.title}</h2>
+              <h2 className="serif caps" lang="en" dir="ltr">{t.collection.title}</h2>
             </div>
           </div>
           <div className="grid-3">
@@ -86,7 +86,7 @@ export default function HomePage({ t }: { t: Dict }) {
             {t.steps.map((s) => (
               <div key={s.n} className="step">
                 <p className="num">{s.n}</p>
-                <h3>{s.title}</h3>
+                <h3 className="caps" lang="en" dir="ltr">{s.title}</h3>
                 <p className="muted">{s.text}</p>
               </div>
             ))}
@@ -96,14 +96,14 @@ export default function HomePage({ t }: { t: Dict }) {
         <section className="services">
           <div className="inner">
             <div data-reveal>
-              <p className="eyebrow">{t.services.eyebrow}</p>
-              <h2 className="serif">{t.services.title}</h2>
+              <p className="eyebrow caps" lang="en" dir="ltr">{t.services.eyebrow}</p>
+              <h2 className="serif caps" lang="en" dir="ltr">{t.services.title}</h2>
             </div>
             <div data-reveal>
               {t.services.items.map((s) => (
                 <a key={s.id} id={s.id} className="service" href={waLink(s.wa)} target="_blank" rel="noopener">
                   <span className="n">{s.n}</span>
-                  <span className="t">{s.title}</span>
+                  <span className="t caps" lang="en" dir="ltr">{s.title}</span>
                   <span className="d muted">{s.text}</span>
                   <span className="more">{t.services.more}</span>
                 </a>
@@ -116,8 +116,8 @@ export default function HomePage({ t }: { t: Dict }) {
           <div className="split" data-reveal>
             <Pic base={media.bagsPair} alt={t.atelier.alt} position="center 60%" sizes="(max-width: 900px) 100vw, 50vw" />
             <div>
-              <p className="eyebrow">{t.atelier.eyebrow}</p>
-              <h2 className="serif">
+              <p className="eyebrow caps" lang="en" dir="ltr">{t.atelier.eyebrow}</p>
+              <h2 className="serif caps" lang="en" dir="ltr">
                 {t.atelier.title1} <em>{t.atelier.title2}</em>
               </h2>
               <p className="muted">{t.atelier.p1}</p>
@@ -128,12 +128,12 @@ export default function HomePage({ t }: { t: Dict }) {
         </section>
 
         <section className="band" id="club" data-reveal>
-          <h2 className="serif band__name" lang="fr" dir="ltr">{t.subscription.name}</h2>
+          <h2 className="serif band__name caps" lang="fr" dir="ltr">{t.subscription.name}</h2>
           <p className="band__tagline">{t.subscription.tagline}</p>
           <div className="tiers">
             {t.subscription.tiers.map((tier) => (
               <a key={tier.id} className="tier" href={waLink(t.subscription.waMessage(tier.name, tier.price))} target="_blank" rel="noopener">
-                <span className="tier__name" lang="fr" dir="ltr">{tier.name}</span>
+                <span className="tier__name caps" lang="fr" dir="ltr">{tier.name}</span>
                 <span className="tier__price"><bdi>{tier.price}</bdi> {t.subscription.perMonth}</span>
                 <span className="tier__cta">{t.subscription.choose}</span>
               </a>
@@ -143,7 +143,7 @@ export default function HomePage({ t }: { t: Dict }) {
 
         <section className="wrap section">
           <div className="gallery-head">
-            <h2 className="serif">{t.gallery.title}</h2>
+            <h2 className="serif caps" lang="en" dir="ltr">{t.gallery.title}</h2>
             <a href={`https://instagram.com/${contact.instagram}`}>@{contact.instagram}</a>
           </div>
           <div className="gallery" data-reveal>
@@ -162,7 +162,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <p className="serif footer-tagline" lang="en" dir="ltr">{t.footer.tagline}</p>
           </div>
           <div className="col">
-            <p className="eyebrow" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
+            <p className="eyebrow caps" lang="en" dir="ltr" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
             <span>{t.footer.address}</span>
             {contact.phones.map((p) => (
               <a key={p.href} href={p.href} className="ltr tel">{t.locale === "en" ? p.intl : p.label}</a>
@@ -170,7 +170,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
           </div>
           <div className="col">
-            <p className="eyebrow" style={{ marginBottom: 8 }}>{t.footer.atelierCol}</p>
+            <p className="eyebrow caps" lang="en" dir="ltr" style={{ marginBottom: 8 }}>{t.footer.atelierCol}</p>
             {t.nav.map((n) => (
               <a key={n.href} href={n.href}>{n.label}</a>
             ))}

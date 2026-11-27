@@ -22,7 +22,7 @@ export default function GlobalNotFound() {
           </a>
           <div className="nf__body">
             <p className="nf__code" aria-hidden="true">404</p>
-            <h1>{t.he.title}</h1>
+            <h1 className="caps" lang="en" dir="ltr">{t.he.title}</h1>
             <p className="nf__text">{t.he.text}</p>
             <div className="nf__ctas">
               <a href="/" className="btn btn--cream">{t.he.home}</a>
@@ -30,7 +30,7 @@ export default function GlobalNotFound() {
             </div>
           </div>
           <p className="nf__en" lang="en" dir="ltr">
-            {t.en.title} <a href="/en/">{t.en.home}</a>
+            <a href="/en/">{t.en.home}</a>
           </p>
         </main>
       </body>
