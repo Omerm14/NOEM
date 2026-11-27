@@ -1,6 +1,7 @@
 import type { Dict } from "@/content/site";
 import { bigWidth, contact, media, shown, waLink } from "@/content/site";
 import A11yStatement from "./A11yStatement";
+import GalleryReel from "./GalleryReel";
 import Header from "./Header";
 import Reveal from "./Reveal";
 import RichText from "./RichText";
@@ -178,11 +179,21 @@ export default function HomePage({ t }: { t: Dict }) {
               <NewTab />
             </a>
           </div>
-          <div className="gallery" data-reveal>
-            <Pic base={media.yellowWrapped} alt={t.gallery.alts[0]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.boxPastel} alt={t.gallery.alts[1]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.vaseKitchen} alt={t.gallery.alts[2]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
-            <Pic base={media.bagsPair} alt={t.gallery.alts[3]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
+          <div data-reveal>
+            <GalleryReel
+              dir={t.dir}
+              label={t.gallery.label}
+              prev={t.gallery.prev}
+              next={t.gallery.next}
+              images={[
+                { base: media.yellowWrapped, alt: t.gallery.alts[0] },
+                { base: media.boxPastel, alt: t.gallery.alts[1] },
+                ...t.collection.bouquets.map((b) => ({ base: b.image, alt: b.alt })),
+                { base: media.vaseKitchen, alt: t.gallery.alts[2] },
+                { base: media.bagsPair, alt: t.gallery.alts[3] },
+                { base: media.bagYellow, alt: t.atelier.alt },
+              ]}
+            />
           </div>
         </section>
 

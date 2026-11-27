@@ -105,7 +105,7 @@ export type Dict = {
   services: { eyebrow: string; title: string; more: string; items: { n: string; title: string; text: string; id: string; wa: string }[] };
   atelier: { eyebrow: string; title1: string; title2: string; p1: string; p2: string; cta: string; alt: string };
   subscription: { name: string; tagline: string; perMonth: string; choose: string; tiers: { id: string; name: string; price: string }[]; waMessage: (tier: string, price: string) => string };
-  gallery: { title: string; alts: string[] };
+  gallery: { title: string; alts: string[]; label: string; prev: string; next: string };
   faq: { title: string; items: { id: string; q: string; a: string }[] };
   footer: { tagline: string; visit: string; delivery: string; atelierCol: string; rights: string; statementLink: string };
   statement: {
@@ -229,6 +229,9 @@ export const he: Dict = {
   },
   gallery: {
     title: "From the atelier",
+    label: "גלריית עבודות של NOÉM, אפשר לגלול הצידה",
+    prev: "התמונה הקודמת",
+    next: "התמונה הבאה",
     alts: [
       "זר גרברות צהובות וחרציות בעטיפת שמנת עם סרט וכרטיס NOÉM",
       "סידור פרחים בקופסה עם ורדים, דלפיניום תכלת וכרטיס NOÉM",
@@ -372,6 +375,9 @@ export const en: Dict = {
   },
   gallery: {
     title: "From the atelier",
+    label: "NOÉM work gallery, scroll sideways",
+    prev: "Previous photo",
+    next: "Next photo",
     alts: [
       "Yellow gerbera and chrysanthemum bouquet in a cream wrap with a ribbon and a NOÉM card",
       "Box arrangement with roses, pale blue delphinium and a NOÉM card",

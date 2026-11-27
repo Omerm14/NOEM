@@ -799,3 +799,37 @@ html[dir="rtl"] .site-footer .col a.ltr { justify-content: flex-end; }
 }
 /* Hero still settles faster */
 .hero__media img { animation-duration: 5s; }
+
+/* ---------- Gallery reel: every photo, swipe / arrows ---------- */
+.reel { position: relative; }
+.reel__track {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * 14px) / 3.3);
+  gap: 14px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.reel__track::-webkit-scrollbar { display: none; }
+.reel__track:focus-visible { outline-offset: 6px; }
+.reel__item { scroll-snap-align: start; }
+.reel__item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--cream-deep); display: block; }
+.reel__nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.reel__btn {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--rule); color: var(--olive); cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+.reel__btn:disabled { opacity: 0.3; cursor: default; }
+@media (hover: hover) { .reel__btn:not(:disabled):hover { border-color: var(--olive); } }
+@media (max-width: 700px) {
+  .reel__track { grid-auto-columns: 78%; gap: 10px; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+}
+@media (prefers-reduced-motion: reduce) { .reel__track { scroll-behavior: auto; } }
