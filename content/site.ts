@@ -8,8 +8,11 @@ export const contact = {
     { label: "052-601-2220", href: "tel:+972526012220" },
   ],
   instagram: "noem.flowers",
-  web: "www.noem.co.il",
+  web: "www.noem-atelier.com",
 };
+
+// Canonical address of the live site (used for metadata, sitemap, robots).
+export const siteUrl = "https://www.noem-atelier.com";
 
 export const media = {
   hero: "/media/hero.mp4",
