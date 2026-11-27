@@ -544,3 +544,68 @@ html[lang="en"] .main-nav a { font-size: 12px; letter-spacing: 0.14em; }
 @media (prefers-reduced-motion: reduce) { .nf__body { animation: none; } }
 .nf__en a { white-space: nowrap; }
 @media (max-width: 700px) { .nf__en a { display: inline-block; margin: 10px 0 0; } .nf__en { line-height: 1.8; } }
+
+/* Hero signature: English, capitals, both languages */
+.hero h1 {
+  text-transform: uppercase;
+  font-size: clamp(30px, 4.6vw, 66px);
+  letter-spacing: 0.12em;
+  line-height: 1.18;
+  margin-inline-end: -0.12em; /* trailing tracking would push the line off-centre */
+}
+.hero h1 span, .hero h1 em { display: inline-block; }
+@media (max-width: 700px) { .hero h1 { letter-spacing: 0.1em; font-size: clamp(28px, 8.4vw, 40px); } .hero h1 span, .hero h1 em { display: block; } }
+
+/* Panel fixes: comfortable tap targets */
+.menu-btn { min-height: 44px; }
+.site-footer .col a.tel { min-height: 40px; display: inline-flex; align-items: center; }
+html[dir="rtl"] .site-footer .col a.tel { justify-content: flex-end; }
+
+/* Collection: handmade / individual pricing note */
+.card h3 { margin-bottom: -4px; }
+.handmade {
+  margin: clamp(40px, 5vw, 56px) auto 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  max-width: 720px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* Le Club Floral — three subscription tiers on the olive band */
+.band__name { font-weight: 100; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; margin: 0 auto; }
+.band__tagline { margin: 14px 0 0; font-size: 18px; color: rgba(249, 240, 228, 0.8); }
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1040px;
+  margin: clamp(40px, 5vw, 56px) auto 0;
+}
+.tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 20px 30px;
+  border: 1px solid rgba(249, 240, 228, 0.45);
+  color: var(--cream);
+  text-decoration: none;
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease;
+}
+.tier__name { font-weight: 200; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.1; }
+.tier__price { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249, 240, 228, 0.85); }
+html[lang="he"] .tier__price { font-size: 16px; letter-spacing: 0.04em; }
+.tier__price bdi { font-size: 20px; letter-spacing: 0.06em; color: var(--cream); }
+.tier__cta { margin-top: 10px; font-size: 12px; letter-spacing: var(--track); text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+html[lang="he"] .tier__cta { font-size: 15px; font-weight: 400; }
+@media (hover: hover) {
+  .tier:hover { background: var(--cream); color: var(--olive); border-color: var(--cream); }
+  .tier:hover .tier__price, .tier:hover .tier__price bdi { color: var(--olive); }
+}
+@media (max-width: 800px) {
+  .tiers { grid-template-columns: 1fr; gap: 14px; max-width: 420px; }
+  .tier { padding: 26px 20px 22px; }
+}

@@ -21,9 +21,13 @@ Hebrew is the primary language (RTL at `/`), English mirrors it at `/en/`.
 - `components/Reveal.tsx` — fade-in on scroll (respects reduced motion).
 - `app/(he)` and `app/(en)/en` — two root layouts (lang/dir differ). `app/globals.css` — all styles, logical properties for RTL.
 - `public/media` — photos (webp 800/1400), logos, hero videos (landscape + vertical for phones).
+  Atelier photos come from the client's Google Drive folder (HEIC → webp 800/1400).
 
 ## Placeholders still open (in [brackets] in content/site.ts)
-Prices, founder name + bio + quote, atelier address, delivery area. Hero video is a stand-in made from photos —
+Founder name + bio + quote, atelier address, delivery area.
+Pricing: bouquets have NO fixed price — each is priced individually (handmade, depends on stock + budget; see
+`collection.handmade`). Subscriptions = "Le Club Floral", three tiers: L'Essentiel ₪650, Signature ₪850,
+Le Jardin Privé ₪1,500 per month (weekly delivery). Hero video is a stand-in made from photos —
 replace `public/media/hero.mp4` (16:9) and `hero-vertical.mp4` (3:4) with real atelier footage.
 
 ## Commands

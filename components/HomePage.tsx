@@ -26,7 +26,7 @@ function Pic({ base, alt, position, sizes = "(max-width: 900px) 100vw, 33vw" }: 
 export default function HomePage({ t }: { t: Dict }) {
   return (
     <>
-      <Header t={{ locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
+      <Header t={{ orderMessage: t.orderMessage, locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
       <Reveal />
       <main>
         <section className="hero" aria-label={t.hero.videoLabel}>
@@ -36,12 +36,12 @@ export default function HomePage({ t }: { t: Dict }) {
           </video>
           <div className="hero__shade" aria-hidden="true" />
           <div className="hero__content hero-in">
-            <h1>
-              {t.hero.line1} <em>{t.hero.line2}</em>
+            <h1 lang="en" dir="ltr">
+              <span>{t.hero.line1}</span> <em>{t.hero.line2}</em>
             </h1>
             <div className="hero__ctas">
               <a href="#collection" className="btn btn--cream">{t.hero.explore}</a>
-              <a href={waLink()} className="btn btn--line">
+              <a href={waLink(t.orderMessage)} className="btn btn--line" target="_blank" rel="noopener">
                 <WhatsAppIcon />
                 {t.hero.whatsapp}
               </a>
@@ -68,15 +68,13 @@ export default function HomePage({ t }: { t: Dict }) {
                 <div className="card__img">
                   <Pic base={b.image} alt={b.alt} position={b.position} />
                 </div>
-                <div className="card__row">
-                  <h3 className="serif">{b.name}</h3>
-                  <span>{b.price}</span>
-                </div>
+                <h3 className="serif">{b.name}</h3>
                 <p className="muted">{b.note}</p>
-                <a className="link-line" href={waLink(t.collection.waMessage(b.name))}>{t.collection.cta}</a>
+                <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">{t.collection.cta}</a>
               </article>
             ))}
           </div>
+          <p className="handmade" data-reveal>{t.collection.handmade}</p>
         </section>
 
         <div className="wrap steps-wrap">
@@ -99,7 +97,7 @@ export default function HomePage({ t }: { t: Dict }) {
             </div>
             <div data-reveal>
               {t.services.items.map((s) => (
-                <a key={s.id} id={s.id} className="service" href={waLink(`NOÉM — ${s.title}`)}>
+                <a key={s.id} id={s.id} className="service" href={waLink(s.wa)} target="_blank" rel="noopener">
                   <span className="n">{s.n}</span>
                   <span className="t">{s.title}</span>
                   <span className="d muted">{s.text}</span>
@@ -112,7 +110,7 @@ export default function HomePage({ t }: { t: Dict }) {
 
         <section className="wrap section">
           <div className="split" data-reveal>
-            <Pic base={media.dahlia} alt={t.atelier.alt} sizes="(max-width: 900px) 100vw, 50vw" />
+            <Pic base={media.bagsPair} alt={t.atelier.alt} position="center 60%" sizes="(max-width: 900px) 100vw, 50vw" />
             <div>
               <p className="eyebrow">{t.atelier.eyebrow}</p>
               <h2 className="serif">
@@ -125,10 +123,18 @@ export default function HomePage({ t }: { t: Dict }) {
           </div>
         </section>
 
-        <section className="band" data-reveal>
-          <p className="eyebrow">{t.subscription.eyebrow}</p>
-          <h2 className="serif">{t.subscription.title}</h2>
-          <a className="btn btn--outline-cream" href={waLink(t.subscription.waMessage)}>{t.subscription.cta}</a>
+        <section className="band" id="club" data-reveal>
+          <h2 className="serif band__name" lang="fr" dir="ltr">{t.subscription.name}</h2>
+          <p className="band__tagline">{t.subscription.tagline}</p>
+          <div className="tiers">
+            {t.subscription.tiers.map((tier) => (
+              <a key={tier.id} className="tier" href={waLink(t.subscription.waMessage(tier.name, tier.price))} target="_blank" rel="noopener">
+                <span className="tier__name" lang="fr" dir="ltr">{tier.name}</span>
+                <span className="tier__price"><bdi>{tier.price}</bdi> {t.subscription.perMonth}</span>
+                <span className="tier__cta">{t.subscription.choose}</span>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section className="wrap section">
@@ -137,10 +143,10 @@ export default function HomePage({ t }: { t: Dict }) {
             <a href={`https://instagram.com/${contact.instagram}`}>@{contact.instagram}</a>
           </div>
           <div className="gallery" data-reveal>
-            <Pic base={media.anthurium} alt="" sizes="25vw" />
-            <Pic base={media.dahlia} alt="" position="right bottom" sizes="25vw" />
-            <Pic base={media.window} alt="" position="center 30%" sizes="25vw" />
-            <Pic base={media.bag} alt="" position="center 80%" sizes="25vw" />
+            <Pic base={media.vaseBlush} alt="" position="center 55%" sizes="25vw" />
+            <Pic base={media.bridalRoses} alt="" position="center 55%" sizes="25vw" />
+            <Pic base={media.anthuriumBridal} alt="" position="center 60%" sizes="25vw" />
+            <Pic base={media.vaseKitchen} alt="" position="center 60%" sizes="25vw" />
           </div>
         </section>
       </main>
@@ -155,7 +161,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <p className="eyebrow" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
             <span>{t.footer.address}</span>
             {contact.phones.map((p) => (
-              <a key={p.href} href={p.href} className="ltr">{p.label}</a>
+              <a key={p.href} href={p.href} className="ltr tel">{t.locale === "en" ? p.intl : p.label}</a>
             ))}
             <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
           </div>
