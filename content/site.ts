@@ -72,8 +72,8 @@ export const he: Dict = {
   locale: "he",
   dir: "rtl",
   meta: {
-    title: "NOÉM — אטלייה פרחים",
-    description: "זרי פרחים יוקרתיים בעבודת יד, מינויים, אירועים וחתונות. WHERE FLOWERS BECOME ART.",
+    title: "NOÉM — FLOWER ATELIER",
+    description: "זרי פרחים יוקרתיים בעבודת יד, מינויים, אירועים וחתונות. WHERE FLOWERS BECOME ART.\u200E",
   },
   announcement: "כל זר נקשר ביד באטלייה · משלוחים ב[אזור משלוח]",
   nav: [
@@ -103,7 +103,7 @@ export const he: Dict = {
     by: "[שם המייסדת], מעצבת פרחים",
   },
   collection: {
-    title: "הקולקציה שלנו",
+    title: "Our Collection",
     handmade: "כל זר נקשר ביד באטלייה, ואין שני זרים זהים: הוא נבנה מהפרחים שיש לנו באותו יום ולפי התקציב שלכם, ולכן כל זר מתומחר בנפרד.",
     cta: "להזמנה בוואטסאפ",
     waMessage: (name) => `שלום NOÉM, אשמח להזמין את הזר „${name}״. התקציב שלי: `,
@@ -134,25 +134,25 @@ export const he: Dict = {
     ],
   },
   steps: [
-    { n: "01", title: "בוחרים", text: "זר מהקולקציה, או בחירת הפלוריסטית." },
-    { n: "02", title: "שולחים הודעה", text: "לחיצה אחת פותחת וואטסאפ עם שם הזר. את הפרטים נאשר איתכם אישית." },
-    { n: "03", title: "נמסר ביד", text: "עטוף, עם כרטיס בכתב יד, עד הדלת בשקית של NOÉM." },
+    { n: "01", title: "Choose", text: "זר מהקולקציה, או בחירת הפלוריסטית." },
+    { n: "02", title: "Message us", text: "לחיצה אחת פותחת וואטסאפ עם שם הזר. את הפרטים נאשר איתכם אישית." },
+    { n: "03", title: "Hand-delivered", text: "עטוף, עם כרטיס בכתב יד, עד הדלת בשקית של NOÉM." },
   ],
   services: {
-    eyebrow: "מעבר לזר",
-    title: "השירותים של האטלייה",
+    eyebrow: "Beyond the bouquet",
+    title: "The atelier's services",
     more: "לפרטים",
     items: [
-      { id: "subscriptions", n: "I.", title: "מינויים", text: "Lé Club Floral: זר חדש בבית בכל שבוע, בשלוש חבילות — מ־₪650 לחודש.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
-      { id: "events", n: "II.", title: "אירועים וחתונות", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לאירוע או לחתונה." },
-      { id: "corporate", n: "III.", title: "עסקים", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לעסק — סידורים קבועים ומתנות ללקוחות." },
-      { id: "workshops", n: "IV.", title: "סדנאות", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר.", wa: "שלום NOÉM, אשמח לשמוע על הסדנאות באטלייה." },
+      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Lé Club Floral: זר חדש בבית בכל שבוע, בשלוש חבילות — מ־₪650 לחודש.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
+      { id: "events", n: "II.", title: "Events & Weddings", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לאירוע או לחתונה." },
+      { id: "corporate", n: "III.", title: "Corporate", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לעסק — סידורים קבועים ומתנות ללקוחות." },
+      { id: "workshops", n: "IV.", title: "Workshops", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר.", wa: "שלום NOÉM, אשמח לשמוע על הסדנאות באטלייה." },
     ],
   },
   atelier: {
-    eyebrow: "האטלייה",
-    title1: "כל פרט,",
-    title2: "בכוונה.",
+    eyebrow: "The Atelier",
+    title1: "Every detail,",
+    title2: "considered.",
     p1: "[פסקה קצרה על המייסדת: איפה למדה, למה פתחה את NOÉM, ומה מייחד את דרך העבודה באטלייה.]",
     p2: "מהכרטיס בכתב יד ועד הסרט על השקית — שום דבר לא יוצא מהאטלייה במקרה.",
     cta: "הסיפור שלנו",
@@ -170,12 +170,12 @@ export const he: Dict = {
     ],
     waMessage: (tier, price) => `שלום NOÉM, אשמח להצטרף ל־Lé Club Floral במינוי ${tier} (${price} לחודש).`,
   },
-  gallery: { title: "מהאטלייה" },
+  gallery: { title: "From the atelier" },
   footer: {
     tagline: "WHERE FLOWERS BECOME ART.",
-    visit: "ביקור ויצירת קשר",
+    visit: "Visit & contact",
     address: "[כתובת האטלייה]",
-    atelierCol: "האטלייה",
+    atelierCol: "Atelier",
     rights: "© NOÉM אטלייה פרחים",
   },
 };
@@ -184,7 +184,7 @@ export const en: Dict = {
   locale: "en",
   dir: "ltr",
   meta: {
-    title: "NOÉM — Flower Atelier",
+    title: "NOÉM — FLOWER ATELIER",
     description: "High-end bouquets composed by hand, subscriptions, events and weddings. WHERE FLOWERS BECOME ART.",
   },
   announcement: "Hand-tied daily at the atelier · Delivery across [DELIVERY AREA]",
@@ -276,7 +276,7 @@ export const waLink = (text?: string) =>
 
 // 404 page (app/global-not-found.tsx) — bilingual on one page, Hebrew first.
 export const notFoundCopy = {
-  he: { title: "הדף שחיפשתם לא נמצא.", text: "אולי הקישור השתנה, ואולי הוא פשוט נבל. הזרים שלנו מחכים בדף הבית.", home: "לדף הבית", whatsapp: "הזמנה בוואטסאפ" },
-  en: { title: "This page could not be found.", home: "Back to the atelier" },
+  he: { title: "Page not found.", text: "אולי הקישור השתנה, ואולי הוא פשוט נבל. הזרים שלנו מחכים בדף הבית.", home: "לדף הבית", whatsapp: "הזמנה בוואטסאפ" },
+  en: { home: "Back to the atelier" },
   metaTitle: "404 — NOÉM",
 };

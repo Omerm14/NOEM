@@ -629,3 +629,27 @@ html[dir="rtl"] .site-footer .footer-tagline { text-align: right; }
 /* Over the bright hero still, give the cream header a soft shadow so it never washes out */
 .site-header:not(.is-solid):not(.menu-open) .logo img { filter: drop-shadow(0 1px 10px rgba(30, 32, 16, 0.55)); }
 .site-header:not(.is-solid):not(.menu-open) .header-row, .site-header:not(.is-solid):not(.menu-open) .announce { text-shadow: 0 1px 10px rgba(30, 32, 16, 0.5); }
+
+/* =====================================================================
+   Headings: English, in capitals, on both languages
+   ===================================================================== */
+.caps { text-transform: uppercase; letter-spacing: 0.1em; }
+html[dir="rtl"] [dir="ltr"].caps { text-align: right; }
+html[dir="rtl"] .band__name.caps, html[dir="rtl"] .tier__name.caps, html[dir="rtl"] .nf h1.caps { text-align: center; }
+
+.section-head h2.caps, .services h2.caps, .split h2.caps { font-size: clamp(28px, 3.2vw, 46px); line-height: 1.15; }
+.split h2.caps em { font-weight: 200; }
+.gallery-head h2.caps { font-size: clamp(22px, 2.2vw, 28px); }
+.eyebrow.caps { font-size: 12px; font-weight: 400; letter-spacing: 0.24em; }
+.step h3.caps { font-size: 14px; font-weight: 400; letter-spacing: 0.18em; }
+.service .t.caps { font-size: clamp(20px, 2vw, 26px); letter-spacing: 0.12em; }
+.band__name.caps { font-size: clamp(32px, 4.2vw, 54px); letter-spacing: 0.1em; }
+.tier__name.caps { font-size: clamp(20px, 1.9vw, 26px); letter-spacing: 0.1em; }
+.nf h1.caps { font-size: clamp(24px, 3.2vw, 38px); letter-spacing: 0.12em; }
+@media (max-width: 700px) {
+  .section-head h2.caps, .services h2.caps, .split h2.caps { font-size: clamp(24px, 7vw, 30px); }
+  .band__name.caps { font-size: clamp(26px, 8vw, 34px); }
+}
+/* Same English heading in both languages: beat the language-specific label/step sizes */
+html[lang] .eyebrow.caps { font-size: 12px; font-weight: 400; letter-spacing: 0.24em; line-height: normal; }
+html[lang] .step h3.caps { font-size: 14px; font-weight: 400; letter-spacing: 0.18em; }
