@@ -89,12 +89,12 @@ export default function Header({ t }: { t: HeaderCopy }) {
             {t.switchLabel}
             <span className="sr-only"> — {t.switchAria}</span>
           </a>
-          <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener" data-loc="header">
+          <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener" data-loc="header" data-item="general">
             {t.order}<span className="sr-only"> {t.newTab}</span>
           </a>
         </div>
       </div>
-      <nav id="mobile-nav" data-loc="mobile_nav" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label={t.menu} aria-hidden={!open} inert={!open}>
+      <nav id="mobile-nav" data-loc="mobile_nav" data-item="general" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label={t.menu} aria-hidden={!open} inert={!open}>
         <div className="mobile-nav__links">
           {t.nav.map((n, i) => (
             <a key={n.href} ref={i === 0 ? firstLink : undefined} href={n.href} onClick={close} style={{ "--i": i } as React.CSSProperties}>{n.label}</a>

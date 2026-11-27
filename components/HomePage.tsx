@@ -3,6 +3,7 @@ import { contact, media, shown, waLink } from "@/content/site";
 import A11yStatement from "./A11yStatement";
 import Header from "./Header";
 import Reveal from "./Reveal";
+import RichText from "./RichText";
 import StructuredData from "./StructuredData";
 import Track from "./Track";
 
@@ -54,7 +55,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <h1 lang="en" dir="ltr">
               <span>{t.hero.line1}</span> <em>{t.hero.line2}</em>
             </h1>
-            <div className="hero__ctas" data-loc="hero">
+            <div className="hero__ctas" data-loc="hero" data-item="general">
               <a href="#collection" className="btn btn--cream">{t.hero.explore}</a>
               <a href={waLink(t.orderMessage)} className="btn btn--line" target="_blank" rel="noopener">
                 <WhatsAppIcon />
@@ -191,7 +192,7 @@ export default function HomePage({ t }: { t: Dict }) {
             {t.faq.items.map((f) => (
               <details key={f.id} id={`faq-${f.id}`} className="faq__item" data-item={f.id}>
                 <summary>{f.q}</summary>
-                <p>{f.a}</p>
+                <p><RichText text={f.a} /></p>
               </details>
             ))}
           </div>
