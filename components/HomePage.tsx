@@ -1,7 +1,10 @@
 import type { Dict } from "@/content/site";
-import { contact, media, waLink } from "@/content/site";
+import { contact, media, shown, waLink } from "@/content/site";
+import A11yStatement from "./A11yStatement";
 import Header from "./Header";
 import Reveal from "./Reveal";
+import StructuredData from "./StructuredData";
+import Track from "./Track";
 
 const WhatsAppIcon = () => (
   <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -10,7 +13,7 @@ const WhatsAppIcon = () => (
 );
 
 function Pic({ base, alt, position, sizes = "(max-width: 900px) 100vw, 33vw" }: { base: string; alt: string; position?: string; sizes?: string }) {
-  const big = base.endsWith("anthurium") ? 1045 : 1400;
+  const big = 1400;
   return (
     <img
       src={`${base}-800.webp`}
@@ -24,11 +27,17 @@ function Pic({ base, alt, position, sizes = "(max-width: 900px) 100vw, 33vw" }: 
 }
 
 export default function HomePage({ t }: { t: Dict }) {
+  const NewTab = () => <span className="sr-only"> {t.newTab}</span>;
+  const quoteBy = shown(t.quote.by);
+  const atelierP1 = shown(t.atelier.p1);
   return (
     <>
-      <Header t={{ orderMessage: t.orderMessage, locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
+      <StructuredData t={t} />
+      <a className="skip-link" href="#main">{t.skip}</a>
+      <Header t={{ newTab: t.newTab, homeLabel: t.homeLabel, orderMessage: t.orderMessage, locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
       <Reveal />
-      <main>
+      <Track lang={t.locale} />
+      <main id="main" tabIndex={-1}>
         <section className="hero" aria-label={t.hero.videoLabel}>
           <picture className="hero__media" aria-hidden="true">
             <source media="(max-width: 700px) and (orientation: portrait)" srcSet={`${media.heroImage}-portrait.webp`} />
@@ -45,11 +54,12 @@ export default function HomePage({ t }: { t: Dict }) {
             <h1 lang="en" dir="ltr">
               <span>{t.hero.line1}</span> <em>{t.hero.line2}</em>
             </h1>
-            <div className="hero__ctas">
+            <div className="hero__ctas" data-loc="hero">
               <a href="#collection" className="btn btn--cream">{t.hero.explore}</a>
               <a href={waLink(t.orderMessage)} className="btn btn--line" target="_blank" rel="noopener">
                 <WhatsAppIcon />
                 {t.hero.whatsapp}
+                <NewTab />
               </a>
             </div>
           </div>
@@ -57,7 +67,7 @@ export default function HomePage({ t }: { t: Dict }) {
 
         <section className="quote" data-reveal>
           <p className="serif">{t.quote.text}</p>
-          <p className="eyebrow">{t.quote.by}</p>
+          {quoteBy && <p className="eyebrow">{quoteBy}</p>}
         </section>
 
         <section id="collection" className="wrap section section--collection">
@@ -66,22 +76,29 @@ export default function HomePage({ t }: { t: Dict }) {
               <h2 className="serif caps" lang="en" dir="ltr">{t.collection.title}</h2>
             </div>
           </div>
-          <div className="grid-3">
+          <div className="grid-3" data-loc="collection">
             {t.collection.bouquets.map((b) => (
-              <article key={b.id} className="card" data-reveal>
+              <article key={b.id} className="card" data-reveal data-item={b.id}>
                 <div className="card__img">
                   <Pic base={b.image} alt={b.alt} position={b.position} />
                 </div>
                 <h3 className="serif card__name" lang="en" dir="ltr">{b.name}</h3>
                 <p className="muted">{b.note}</p>
-                <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">{t.collection.cta}</a>
+                <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">
+                  {t.collection.cta}
+                  <NewTab />
+                </a>
               </article>
             ))}
           </div>
-          <p className="handmade" data-reveal>{t.collection.handmade}</p>
+          <div className="handmade" data-reveal>
+            <p>{t.collection.handmade}</p>
+            <p>{t.collection.about}</p>
+          </div>
         </section>
 
-        <div className="wrap steps-wrap">
+        <section className="wrap steps-wrap" aria-labelledby="how-to-order">
+          <h2 id="how-to-order" className="sr-only" lang="en" dir="ltr">{t.howToOrder}</h2>
           <div className="steps" data-reveal>
             {t.steps.map((s) => (
               <div key={s.n} className="step">
@@ -91,9 +108,9 @@ export default function HomePage({ t }: { t: Dict }) {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <section className="services">
+        <section className="services" data-loc="service">
           <div className="inner">
             <div data-reveal>
               <p className="eyebrow caps" lang="en" dir="ltr">{t.services.eyebrow}</p>
@@ -101,11 +118,19 @@ export default function HomePage({ t }: { t: Dict }) {
             </div>
             <div data-reveal>
               {t.services.items.map((s) => (
-                <a key={s.id} id={s.id} className="service" href={waLink(s.wa)} target="_blank" rel="noopener">
-                  <span className="n">{s.n}</span>
+                <a
+                  key={s.id}
+                  id={s.id}
+                  className="service"
+                  href={waLink(s.wa)}
+                  target="_blank"
+                  rel="noopener"
+                  data-item={s.id}
+                >
+                  <span className="n" aria-hidden="true">{s.n}</span>
                   <span className="t caps" lang="en" dir="ltr">{s.title}</span>
                   <span className="d muted">{s.text}</span>
-                  <span className="more">{t.services.more}</span>
+                  <span className="more">{t.services.more}<NewTab /></span>
                 </a>
               ))}
             </div>
@@ -120,22 +145,25 @@ export default function HomePage({ t }: { t: Dict }) {
               <h2 className="serif caps" lang="en" dir="ltr">
                 {t.atelier.title1} <em>{t.atelier.title2}</em>
               </h2>
-              <p className="muted">{t.atelier.p1}</p>
+              {atelierP1 && <p className="muted">{atelierP1}</p>}
               <p className="muted" style={{ marginBottom: 36 }}>{t.atelier.p2}</p>
-              <a className="link-line" href={`https://instagram.com/${contact.instagram}`}>{t.atelier.cta}</a>
+              <a className="link-line" href={`https://www.instagram.com/${contact.instagram}/`} target="_blank" rel="noopener" data-loc="atelier">
+                {t.atelier.cta}
+                <NewTab />
+              </a>
             </div>
           </div>
         </section>
 
-        <section className="band" id="club" data-reveal>
+        <section className="band" id="club" data-reveal data-loc="tier">
           <h2 className="serif band__name caps" lang="fr" dir="ltr">{t.subscription.name}</h2>
           <p className="band__tagline">{t.subscription.tagline}</p>
           <div className="tiers">
             {t.subscription.tiers.map((tier) => (
-              <a key={tier.id} className="tier" href={waLink(t.subscription.waMessage(tier.name, tier.price))} target="_blank" rel="noopener">
+              <a key={tier.id} className="tier" href={waLink(t.subscription.waMessage(tier.name, tier.price))} target="_blank" rel="noopener" data-item={tier.id}>
                 <span className="tier__name caps" lang="fr" dir="ltr">{tier.name}</span>
                 <span className="tier__price"><bdi>{tier.price}</bdi> {t.subscription.perMonth}</span>
-                <span className="tier__cta">{t.subscription.choose}</span>
+                <span className="tier__cta">{t.subscription.choose}<NewTab /></span>
               </a>
             ))}
           </div>
@@ -144,13 +172,28 @@ export default function HomePage({ t }: { t: Dict }) {
         <section className="wrap section">
           <div className="gallery-head">
             <h2 className="serif caps" lang="en" dir="ltr">{t.gallery.title}</h2>
-            <a href={`https://instagram.com/${contact.instagram}`}>@{contact.instagram}</a>
+            <a href={`https://www.instagram.com/${contact.instagram}/`} target="_blank" rel="noopener" data-loc="gallery">
+              @{contact.instagram}
+              <NewTab />
+            </a>
           </div>
           <div className="gallery" data-reveal>
-            <Pic base={media.vaseBlush} alt="" position="center 55%" sizes="25vw" />
-            <Pic base={media.bridalRoses} alt="" position="center 55%" sizes="25vw" />
-            <Pic base={media.anthuriumBridal} alt="" position="center 60%" sizes="25vw" />
-            <Pic base={media.vaseKitchen} alt="" position="center 60%" sizes="25vw" />
+            <Pic base={media.vaseBlush} alt={t.gallery.alts[0]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.bridalRoses} alt={t.gallery.alts[1]} position="center 55%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.anthuriumBridal} alt={t.gallery.alts[2]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
+            <Pic base={media.vaseKitchen} alt={t.gallery.alts[3]} position="center 60%" sizes="(max-width: 700px) 50vw, 25vw" />
+          </div>
+        </section>
+
+        <section className="wrap section faq" id="questions" aria-labelledby="faq-title" data-loc="faq">
+          <h2 id="faq-title" className="serif caps" lang="en" dir="ltr">{t.faq.title}</h2>
+          <div className="faq__list">
+            {t.faq.items.map((f) => (
+              <details key={f.id} id={`faq-${f.id}`} className="faq__item" data-item={f.id}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
           </div>
         </section>
       </main>
@@ -158,16 +201,19 @@ export default function HomePage({ t }: { t: Dict }) {
       <footer className="site-footer">
         <div className="cols">
           <div className="brand">
-            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} />
+            <img src={media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} loading="lazy" />
             <p className="serif footer-tagline" lang="en" dir="ltr">{t.footer.tagline}</p>
           </div>
-          <div className="col">
+          <div className="col" data-loc="footer">
             <p className="eyebrow caps" lang="en" dir="ltr" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
-            <span>{t.footer.address}</span>
+            <span>{t.footer.delivery}</span>
             {contact.phones.map((p) => (
               <a key={p.href} href={p.href} className="ltr tel">{t.locale === "en" ? p.intl : p.label}</a>
             ))}
-            <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
+            <a href={`https://www.instagram.com/${contact.instagram}/`} className="ltr" target="_blank" rel="noopener">
+              @{contact.instagram}
+              <NewTab />
+            </a>
           </div>
           <div className="col">
             <p className="eyebrow caps" lang="en" dir="ltr" style={{ marginBottom: 8 }}>{t.footer.atelierCol}</p>
@@ -176,7 +222,13 @@ export default function HomePage({ t }: { t: Dict }) {
             ))}
           </div>
         </div>
-        <p className="legal">{t.footer.rights} · <span className="ltr">{contact.web}</span></p>
+        <div className="legal">
+          <span>{t.footer.rights}</span>
+          <span aria-hidden="true">·</span>
+          <span className="ltr">{contact.web}</span>
+          <span aria-hidden="true">·</span>
+          <A11yStatement t={{ footer: t.footer, statement: t.statement }} />
+        </div>
       </footer>
     </>
   );
