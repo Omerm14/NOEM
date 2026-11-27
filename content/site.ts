@@ -8,8 +8,11 @@ export const contact = {
     { label: "052-601-2220", href: "tel:+972526012220" },
   ],
   instagram: "noem.flowers",
-  web: "www.noem.co.il",
+  web: "www.noem-atelier.com",
 };
+
+// Canonical address of the live site (used for metadata, sitemap, robots).
+export const siteUrl = "https://www.noem-atelier.com";
 
 export const media = {
   hero: "/media/hero.mp4",
@@ -254,3 +257,10 @@ export const en: Dict = {
 
 export const waLink = (text?: string) =>
   `https://wa.me/${contact.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+
+// 404 page (app/global-not-found.tsx) — bilingual on one page, Hebrew first.
+export const notFoundCopy = {
+  he: { title: "הדף שחיפשתם לא נמצא.", text: "אולי הקישור השתנה, ואולי הוא פשוט נבל. הזרים שלנו מחכים בדף הבית.", home: "לדף הבית", whatsapp: "הזמנה בוואטסאפ" },
+  en: { title: "This page could not be found.", home: "Back to the atelier" },
+  metaTitle: "404 — NOÉM",
+};

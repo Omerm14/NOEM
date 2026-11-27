@@ -4,10 +4,10 @@ import "@fontsource/heebo/200.css";
 import "@fontsource/heebo/300.css";
 import "@fontsource/heebo/400.css";
 import "../../globals.css";
-import { en } from "@/content/site";
+import { en, siteUrl } from "@/content/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.noem.co.il"),
+  metadataBase: new URL(siteUrl),
   title: en.meta.title,
   icons: { icon: "/icon.png", apple: "/apple-touch-icon.png" },
   description: en.meta.description,
