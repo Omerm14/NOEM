@@ -70,7 +70,7 @@ export default function Header({ t }: { t: HeaderCopy }) {
           {open ? t.close : t.menu}
         </button>
         <a href={t.locale === "he" ? "/" : "/en/"} className="logo" aria-label="NOÉM">
-          <img src={dark ? media.logoOlive : media.logoCream} alt="NOÉM Flower Atelier" width={500} height={256} />
+          <img src={dark ? media.logoOlive : media.logoCream} alt="NOÉM Flower Atelier" width={1164} height={590} />
         </a>
         <div className="header-tools">
           <a href={t.switchHref} className="lang-switch" aria-label={t.switchAria} lang={t.locale === "he" ? "en" : "he"}>
