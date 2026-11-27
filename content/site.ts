@@ -4,8 +4,8 @@
 export const contact = {
   whatsapp: "972542270540",
   phones: [
-    { label: "054-227-0540", href: "tel:+972542270540" },
-    { label: "052-601-2220", href: "tel:+972526012220" },
+    { label: "054-227-0540", intl: "+972 54-227-0540", href: "tel:+972542270540" },
+    { label: "052-601-2220", intl: "+972 52-601-2220", href: "tel:+972526012220" },
   ],
   instagram: "noem.flowers",
   web: "www.noem-atelier.com",
@@ -49,13 +49,14 @@ export type Dict = {
   switchHref: string;
   switchAria: string;
   order: string;
+  orderMessage: string;
   menu: string;
   close: string;
   hero: { line1: string; line2: string; explore: string; whatsapp: string; videoLabel: string };
   quote: { text: string; by: string };
   collection: { eyebrow: string; title: string; intro: string; cta: string; waMessage: (name: string) => string; bouquets: Bouquet[] };
   steps: { n: string; title: string; text: string }[];
-  services: { eyebrow: string; title: string; more: string; items: { n: string; title: string; text: string; id: string }[] };
+  services: { eyebrow: string; title: string; more: string; items: { n: string; title: string; text: string; id: string; wa: string }[] };
   atelier: { eyebrow: string; title1: string; title2: string; p1: string; p2: string; cta: string; alt: string };
   subscription: { eyebrow: string; title: string; cta: string; waMessage: string };
   gallery: { title: string };
@@ -81,6 +82,7 @@ export const he: Dict = {
   switchHref: "/en/",
   switchAria: "Switch to English",
   order: "להזמנה",
+  orderMessage: "שלום NOÉM, אשמח להזמין זר.",
   menu: "תפריט",
   close: "סגירה",
   hero: {
@@ -140,10 +142,10 @@ export const he: Dict = {
     title: "השירותים של האטלייה",
     more: "לפרטים",
     items: [
-      { id: "subscriptions", n: "I.", title: "מינויים", text: "פרחים טריים בבית בכל שבוע או בכל חודש, בהתאם לעונה." },
-      { id: "events", n: "II.", title: "אירועים וחתונות", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו." },
-      { id: "corporate", n: "III.", title: "עסקים", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות." },
-      { id: "workshops", n: "IV.", title: "סדנאות", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר." },
+      { id: "subscriptions", n: "I.", title: "מינויים", text: "פרחים טריים בבית בכל שבוע או בכל חודש, בהתאם לעונה.", wa: "שלום NOÉM, אשמח לשמוע על מינוי פרחים." },
+      { id: "events", n: "II.", title: "אירועים וחתונות", text: "זרי כלה, עיצוב שולחנות והתקנות — מהסקיצה הראשונה ועד היום עצמו.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לאירוע או לחתונה." },
+      { id: "corporate", n: "III.", title: "עסקים", text: "סידורים שבועיים ללובי, למשרד ולבוטיק, ומתנות ללקוחות.", wa: "שלום NOÉM, אשמח לשמוע על פרחים לעסק — סידורים קבועים ומתנות ללקוחות." },
+      { id: "workshops", n: "IV.", title: "סדנאות", text: "ערבים בקבוצה קטנה באטלייה: לומדים להרכיב, ויוצאים עם זר.", wa: "שלום NOÉM, אשמח לשמוע על הסדנאות באטלייה." },
     ],
   },
   atelier: {
@@ -190,6 +192,7 @@ export const en: Dict = {
   switchHref: "/",
   switchAria: "עברית",
   order: "Order",
+  orderMessage: "Hello NOÉM, I'd like to order a bouquet.",
   menu: "Menu",
   close: "Close",
   hero: {
@@ -225,10 +228,10 @@ export const en: Dict = {
     title: "The atelier's services",
     more: "Discover",
     items: [
-      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Fresh flowers at home every week or every month, composed to the season." },
-      { id: "events", n: "II.", title: "Events & Weddings", text: "Bridal bouquets, tablescapes and installations, designed with you from the first sketch." },
-      { id: "corporate", n: "III.", title: "Corporate", text: "Weekly arrangements for lobbies, offices and boutiques, plus client gifting." },
-      { id: "workshops", n: "IV.", title: "Workshops", text: "Small-group evenings at the atelier: learn to compose and take your bouquet home." },
+      { id: "subscriptions", n: "I.", title: "Subscriptions", text: "Fresh flowers at home every week or every month, composed to the season.", wa: "Hello NOÉM, I'd like to hear about a flower subscription." },
+      { id: "events", n: "II.", title: "Events & Weddings", text: "Bridal bouquets, tablescapes and installations, designed with you from the first sketch.", wa: "Hello NOÉM, I'd like to hear about flowers for an event or wedding." },
+      { id: "corporate", n: "III.", title: "Corporate", text: "Weekly arrangements for lobbies, offices and boutiques, plus client gifting.", wa: "Hello NOÉM, I'd like to hear about flowers for my business — regular arrangements and client gifts." },
+      { id: "workshops", n: "IV.", title: "Workshops", text: "Small-group evenings at the atelier: learn to compose and take your bouquet home.", wa: "Hello NOÉM, I'd like to hear about the atelier's workshops." },
     ],
   },
   atelier: {

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Dict } from "@/content/site";
 import { contact, media, waLink } from "@/content/site";
 
-export type HeaderCopy = Pick<Dict, "locale" | "announcement" | "nav" | "switchLabel" | "switchHref" | "switchAria" | "order" | "menu" | "close"> & { whatsapp: string };
+export type HeaderCopy = Pick<Dict, "locale" | "orderMessage" | "announcement" | "nav" | "switchLabel" | "switchHref" | "switchAria" | "order" | "menu" | "close"> & { whatsapp: string };
 
 export default function Header({ t }: { t: HeaderCopy }) {
   const [solid, setSolid] = useState(false);
@@ -76,7 +76,7 @@ export default function Header({ t }: { t: HeaderCopy }) {
           <a href={t.switchHref} className="lang-switch" aria-label={t.switchAria} lang={t.locale === "he" ? "en" : "he"}>
             {t.switchLabel}
           </a>
-          <a href={waLink()} className="order-btn">{t.order}</a>
+          <a href={waLink(t.orderMessage)} className="order-btn" target="_blank" rel="noopener">{t.order}</a>
         </div>
       </div>
       <nav id="mobile-nav" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label={t.menu} aria-hidden={!open} inert={!open}>
@@ -86,9 +86,9 @@ export default function Header({ t }: { t: HeaderCopy }) {
           ))}
         </div>
         <div className="mobile-nav__foot" style={{ "--i": t.nav.length } as React.CSSProperties}>
-          <a href={waLink()} onClick={close} className="btn btn--solid">{t.whatsapp}</a>
+          <a href={waLink(t.orderMessage)} onClick={close} className="btn btn--solid" target="_blank" rel="noopener">{t.whatsapp}</a>
           <div className="mobile-nav__contact">
-            <a href={contact.phones[0].href} className="ltr">{contact.phones[0].label}</a>
+            <a href={contact.phones[0].href} className="ltr">{t.locale === "en" ? contact.phones[0].intl : contact.phones[0].label}</a>
             <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
           </div>
         </div>

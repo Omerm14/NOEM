@@ -26,7 +26,7 @@ function Pic({ base, alt, position, sizes = "(max-width: 900px) 100vw, 33vw" }: 
 export default function HomePage({ t }: { t: Dict }) {
   return (
     <>
-      <Header t={{ locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
+      <Header t={{ orderMessage: t.orderMessage, locale: t.locale, announcement: t.announcement, nav: t.nav, switchLabel: t.switchLabel, switchHref: t.switchHref, switchAria: t.switchAria, order: t.order, menu: t.menu, close: t.close, whatsapp: t.hero.whatsapp }} />
       <Reveal />
       <main>
         <section className="hero" aria-label={t.hero.videoLabel}>
@@ -41,7 +41,7 @@ export default function HomePage({ t }: { t: Dict }) {
             </h1>
             <div className="hero__ctas">
               <a href="#collection" className="btn btn--cream">{t.hero.explore}</a>
-              <a href={waLink()} className="btn btn--line">
+              <a href={waLink(t.orderMessage)} className="btn btn--line" target="_blank" rel="noopener">
                 <WhatsAppIcon />
                 {t.hero.whatsapp}
               </a>
@@ -73,7 +73,7 @@ export default function HomePage({ t }: { t: Dict }) {
                   <span>{b.price}</span>
                 </div>
                 <p className="muted">{b.note}</p>
-                <a className="link-line" href={waLink(t.collection.waMessage(b.name))}>{t.collection.cta}</a>
+                <a className="link-line" href={waLink(t.collection.waMessage(b.name))} target="_blank" rel="noopener">{t.collection.cta}</a>
               </article>
             ))}
           </div>
@@ -99,7 +99,7 @@ export default function HomePage({ t }: { t: Dict }) {
             </div>
             <div data-reveal>
               {t.services.items.map((s) => (
-                <a key={s.id} id={s.id} className="service" href={waLink(`NOÉM — ${s.title}`)}>
+                <a key={s.id} id={s.id} className="service" href={waLink(s.wa)} target="_blank" rel="noopener">
                   <span className="n">{s.n}</span>
                   <span className="t">{s.title}</span>
                   <span className="d muted">{s.text}</span>
@@ -128,7 +128,7 @@ export default function HomePage({ t }: { t: Dict }) {
         <section className="band" data-reveal>
           <p className="eyebrow">{t.subscription.eyebrow}</p>
           <h2 className="serif">{t.subscription.title}</h2>
-          <a className="btn btn--outline-cream" href={waLink(t.subscription.waMessage)}>{t.subscription.cta}</a>
+          <a className="btn btn--outline-cream" href={waLink(t.subscription.waMessage)} target="_blank" rel="noopener">{t.subscription.cta}</a>
         </section>
 
         <section className="wrap section">
@@ -155,7 +155,7 @@ export default function HomePage({ t }: { t: Dict }) {
             <p className="eyebrow" style={{ marginBottom: 8 }}>{t.footer.visit}</p>
             <span>{t.footer.address}</span>
             {contact.phones.map((p) => (
-              <a key={p.href} href={p.href} className="ltr">{p.label}</a>
+              <a key={p.href} href={p.href} className="ltr tel">{t.locale === "en" ? p.intl : p.label}</a>
             ))}
             <a href={`https://instagram.com/${contact.instagram}`} className="ltr">@{contact.instagram}</a>
           </div>
